@@ -1,5 +1,5 @@
-import { apiAxios } from "../utils/axios";
-function querydata(url,params) {
-  return apiAxios(url,params);
+import {apiAxios} from "../utils/axios.js";
+function querydata(url, params) {
+  return apiAxios(url, params);
 }
-export { querydata };
+export default { querydata };

@@ -20,59 +20,76 @@ function tryHideFullScreenLoading() {
     endLoading();
   }
 }
-axios.defaults.baseURL = "https://www.easy-mock.com/mock/";
+switch (process.env.NODE_ENV) {
+  case "production":
+    axios.defaults.baseURL = "";
+    break;
+
+  default:
+    axios.defaults.baseURL = "";
+    break;
+}
 // 请求超时时间
 axios.defaults.timeout = 1000 * 60;
 axios.defaults.withCredentials = true;
 axios.interceptors.request.use(
-  (config) => {
+  config => {
     showFullScreenLoading();
     return config;
   },
-  (error) => {
+  error => {
     return Promise.reject(error);
   }
 );
 
 // http response 拦截器
 axios.interceptors.response.use(
-  (response) => {
+  response => {
     tryHideFullScreenLoading();
     return Promise.resolve(response.data);
   },
-  (error) => {
-    return Promise.reject(error);
+  error => {
+    tryHideFullScreenLoading();
+    let { response } = error;
+    if (response) {
+      // 服务器有返回结果
+      return Promise.reject(error.response);
+    } else {
+      // 断网处理
+      if (!window.navigator.onLine) {
+        return;
+      }
+      return Promise.reject(error);
+    }
   }
 );
-
 function apiAxios(url, params) {
   return new Promise((resolve, reject) => {
     let options = {
       contentType: "application/json;charset=UTF-8",
       method: "post",
-      params: {},
+      params: {}
     };
     options = {
       ...options,
-      ...params,
+      ...params
     };
     if (options.contentType.includes("application/x-www-form-urlencoded")) {
       options.params = qs.stringify(options.params);
     }
     axios({
-      method: method,
+      method: options.method,
       url: url,
       data: options.params,
       headers: {
-        "content-type": options.contentType,
-      },
+        "content-type": options.contentType
+      }
     })
-      .then(function(res) {
+      .then(function (res) {
         resolve(res);
-      })
-      .then(function(err) {
+      }, function (err) {
         reject(err);
-      });
+      })
   });
 }
 
@@ -81,7 +98,7 @@ function startLoading() {
   loading = Loading.service({
     lock: true,
     text: "加载中……",
-    background: "rgba(0, 0, 0, 0.7)",
+    background: "rgba(0, 0, 0, 0.7)"
   });
 }
 function endLoading() {
@@ -89,6 +106,6 @@ function endLoading() {
   loading.close();
 }
 
-export default{
-    apiAxios
-}
+export {
+  apiAxios
+};
