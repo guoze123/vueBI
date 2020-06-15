@@ -15,15 +15,20 @@
           </div>
         </div>
         <ul>
-          <li :class="{ active : i == groupActive }"  @click="checkGroup(i)" v-for="(g,i) in group_list" :key="g.groupId">
+          <li
+            :class="{ active : i == groupActive }"
+            @click="checkGroup(i)"
+            v-for="(g,i) in group_list"
+            :key="g.groupId"
+          >
             <span>{{g.name}}</span>
-            <el-dropdown  @command='add'>
-              <span class="el-dropdown-link" >
+            <el-dropdown @command="add">
+              <span class="el-dropdown-link">
                 <i style="width: 30px" class="el-icon-more"></i>
               </span>
               <el-dropdown-menu slot="dropdown">
-                <el-dropdown-item  :command='{ id: `${g.groupId}`, type:"edit"}'>分组改名</el-dropdown-item>
-                <el-dropdown-item  :command='{ id: `${g.groupId}`, type:"del"}'>删除</el-dropdown-item>
+                <el-dropdown-item :command="{ id: `${g.groupId}`, type:'edit'}">分组改名</el-dropdown-item>
+                <el-dropdown-item :command="{ id: `${g.groupId}`, type:'del'}">删除</el-dropdown-item>
               </el-dropdown-menu>
             </el-dropdown>
           </li>
@@ -37,12 +42,10 @@
 </template>
 
 <script>
-import HelloWorld from "@/components/HelloWorld.vue";
-import TemplateList from './../components/TemplateList.vue';
+import TemplateList from "./../components/TemplateList.vue";
 export default {
   name: "TemplateManagement",
   components: {
-    HelloWorld,
     TemplateList
   },
   data() {
@@ -65,15 +68,14 @@ export default {
     };
   },
   mounted() {},
-  methods:{
-    add(command){
+  methods: {
+    add(command) {
       console.log(command);
     },
-    checkGroup(index){
-      this.groupActive =index
+    checkGroup(index) {
+      this.groupActive = index;
     }
-  },
-  
+  }
 };
 </script>
 <style lang="scss" scoped>
@@ -126,11 +128,11 @@ export default {
       cursor: pointer;
       position: relative;
       padding: 0 16px;
-      &.active{
+      &.active {
         color: #23c312;
         background: #404040;
       }
-      &:hover{
+      &:hover {
         color: #23c312;
         background: #404040;
       }
