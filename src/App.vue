@@ -3,7 +3,12 @@
     <router-view />
   </div>
 </template>
-
+<script>
+console.log(_);
+export default {
+  
+}
+</script>
 <style lang="scss">
 *{
   box-sizing: border-box;

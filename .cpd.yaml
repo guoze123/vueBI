@@ -1,0 +1,33 @@
+languages:
+  - javascript
+  - coffeescript
+  - typescript
+  - vue
+  - jsx
+  - yaml
+  - css
+  - java
+  - htmlmixed   # html mixed source like knockout.js templates 
+files:
+  - src/**/*
+  - css/**/*
+exclude:
+reporter: json
+languages-exts:
+    coffeescript:
+        - coffeee
+    javascript:
+        - es
+        - es5
+        - es6
+        - es7
+        - es8
+        - js
+    vue:
+        - vue
+    css:
+        - css
+        - scss
+limit: 100
+min-tokens: 70
+min-lines: 5

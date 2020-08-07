@@ -1,0 +1,42 @@
+{
+    "env": {
+        "browser": true,
+        
+        "es6": true,
+        "commonjs": true,
+        "jquery":true
+    },
+    "extends": "micued",
+    "parser": "babel-eslint",
+    "parserOptions": {
+        "sourceType": "module"
+    },
+    "globals": {
+        "Lass": false,
+        "$": false,
+        "Clazz":false,
+        "Abstract":false,
+        "Component":false,
+        "Placeholder":false,
+        "MaskSelect":false,
+        "InputSuggest":false,
+        "Swiper":false,
+        "Probe":false,
+        "Pikaday":false,
+        "artDialog":false,
+        "art":false,
+        "template":false,
+        "SearchDialog":false,
+        "C4":false,
+        "SWFUpload":false,
+        "LayerTip":false,
+        "Ports":false,
+        "util":false
+    },
+    "plugins": [
+        "html"
+    ],
+    "rules": {
+
+    }
+}

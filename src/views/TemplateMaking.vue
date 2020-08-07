@@ -3,25 +3,46 @@
     <el-header>Header</el-header>
     <el-container class="content">
       <el-aside width="200px">
-        <div class="header">图层管理</div>
+        <div class="header" @click="ace(12)">图层管理</div>
         <div class="operating_btn">
           <div>
-            <el-tooltip class="item" effect="dark" content="下移一层" placement="top-start">
-              <i class="el-icon-arrow-down"></i>
+            <el-tooltip
+            
+              class="item"
+              effect="dark"
+              content="下移一层"
+              placement="top-start"
+            >
+              <i class="el-icon-arrow-down" ></i>
             </el-tooltip>
           </div>
           <div>
-            <el-tooltip class="item" effect="dark" content="上移一层" placement="top-start">
+            <el-tooltip
+              class="item"
+              effect="dark"
+              content="上移一层"
+              placement="top-start"
+            >
               <i class="el-icon-arrow-up"></i>
             </el-tooltip>
           </div>
           <div>
-            <el-tooltip class="item" effect="dark" content="移到底部" placement="top-start">
+            <el-tooltip
+              class="item"
+              effect="dark"
+              content="移到底部"
+              placement="top-start"
+            >
               <i class="el-icon-caret-bottom"></i>
             </el-tooltip>
           </div>
           <div>
-            <el-tooltip class="item" effect="dark" content="移到顶部" placement="top-start">
+            <el-tooltip
+              class="item"
+              effect="dark"
+              content="移到顶部"
+              placement="top-start"
+            >
               <i class="el-icon-caret-top"></i>
             </el-tooltip>
           </div>
@@ -36,11 +57,11 @@
         <el-main>Main</el-main>
         <el-footer>
           <div class="board-config-scale">
-             <el-checkbox v-model="checked">自动缩放</el-checkbox>
-              <i class="el-icon-remove-outline"></i>   <el-slider value='50'></el-slider>
-               <i class="el-icon-circle-plus-outline"></i> 
+            <el-checkbox v-model="checked">自动缩放</el-checkbox>
+            <i class="el-icon-remove-outline"></i>
+            <el-slider value="50"></el-slider>
+            <i class="el-icon-circle-plus-outline"></i>
           </div>
-           
         </el-footer>
       </el-container>
     </el-container>
@@ -52,18 +73,33 @@ export default {
   name: "TemplateMaking",
   components: {},
   data() {
-    return {};
+    return {
+      htmlTemplate:"function ad(){\n  alert(1233sdfsf)\n}",
+      data:function(params) {
+        alert(2333);
+      }
+    };
   },
   //监听属性 类似于data概念
   computed: {},
   //监控data中的数据变化
   watch: {},
   //方法集合
-  methods: {},
+  methods: {
+   
+    ...{
+      ace: new Function("a","b",`(function(that){\n console.log(that)\n})(this)`)
+    }
+    
+
+  },
   //生命周期 - 创建完成（可以访问当前this实例）
   created() {},
   //生命周期 - 挂载完成（可以访问DOM元素）
-  mounted() {},
+  mounted() {
+    this.ace()
+
+  },
   beforeCreate() {}, //生命周期 - 创建之前
   beforeMount() {}, //生命周期 - 挂载之前
   beforeUpdate() {}, //生命周期 - 更新之前
@@ -73,7 +109,7 @@ export default {
   activated() {} //如果页面有keep-alive缓存功能，这个函数会触发
 };
 </script>
-<style lang='scss' scoped>
+<style lang="scss" scoped>
 //@import url(); 引入公共css类
 
 .el-header,
@@ -129,16 +165,17 @@ export default {
     }
   }
 }
-.board-config-scale{
+.board-config-scale {
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  .el-slider{
+  .el-slider {
     width: 200px;
     margin-left: 15px;
   }
-  i{
+  .el-icon-remove-outline,
+  .el-icon-circle-plus-outline {
     margin-left: 10px;
     color: #409eff;
     font-size: 20px;
