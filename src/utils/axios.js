@@ -87,8 +87,6 @@ function apiAxios(url, params) {
     })
       .then(function (res) {
         resolve(res);
-      }, function (err) {
-        reject(err);
       })
   });
 }
