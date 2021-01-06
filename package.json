@@ -16,7 +16,7 @@
     },
     "dependencies": {
         "@jiaminghi/data-view": "^2.8.4",
-        "axios": "^0.19.2",
+        "axios": "^0.21.1",
         "babel-polyfill": "^6.26.0",
         "core-js": "^2.6.5",
         "echarts": "^4.8.0",
